@@ -24,7 +24,7 @@
             </div>
             <hr class="heading-line"/>
         </div>
-        <form class="login" action="login" method="POST">
+        <form class="form" action="login" method="POST">
             <div class="messages">
             </div>
             <input class="input" name="email" type="text" placeholder="login">

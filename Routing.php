@@ -21,7 +21,9 @@ class Routing {
         if ($action == "") {
             $object->home();
         }
-        else
+        else {
+            $action = str_replace("-", "", $action);
             $object->$action();
+        }
     }
 }

@@ -9,4 +9,6 @@ Routing::get('', 'DefaultController');
 Routing::get('home', 'DefaultController');
 Routing::get('login', 'DefaultController');
 Routing::get('register', 'DefaultController');
+Routing::get('offer', 'DefaultController');
+Routing::get('add-offer', 'DefaultController');
 Routing::run($path);

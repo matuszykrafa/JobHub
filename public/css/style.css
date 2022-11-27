@@ -1,8 +1,10 @@
 :root {
     --header-height: 80px;
-    --white: #FDF7FF;
+    --light-pink: #FDF7FF;
+    --white: #FFFDFF;
     --dark-purple: #1F1926;
     --purple: #7036D0;
+    --gray: #898989;
 }
 
 body {
@@ -10,7 +12,7 @@ body {
 }
 
 header {
-    width: 100vw;
+    width: 100%;
     height: var(--header-height);
     background-color: var(--dark-purple);
     display: flex;
@@ -32,6 +34,9 @@ header {
     font-size: 36px;
     line-height: 43px;
 }
+.header-buttons span {
+    color: var(--white);
+}
 
 .header-buttons {
     flex: 2;
@@ -49,9 +54,9 @@ header {
 }
 
 .container {
-    width: 100vw;
-    height: calc(100vh - var(--header-height));
-    background-color: var(--white);
+    width: 100%;
+    min-height: calc(100vh - var(--header-height));
+    background-color: var(--light-pink);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -84,7 +89,7 @@ header {
 
 .content-container {
     width: 1000px;
-    height: 700px;
+    min-height: 700px;
     background-color: var(--white);
     box-shadow: 0 4px 4px rgba(112, 54, 208, 0.25);
     border-radius: 0 0 10px 10px;
@@ -107,6 +112,14 @@ header {
     color: var(--white);
 }
 
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 27px;
+}
+
 .input {
     padding-left: 15px;
     width: calc(300px - 15px);
@@ -118,10 +131,27 @@ header {
     border-radius: 10px;
 }
 
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
 .input:focus-visible {
     outline: 1px solid var(--purple);
 }
 
+.textarea {
+    padding: 15px;
+    min-width: 485px;
+    max-width: 600px;
+    min-height: 100px;
+    height: 200px;
+    max-height: 500px;
+
+    background: var(--white);
+    border: 1px solid rgba(157, 137, 179, 0.11);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.11);
+    border-radius: 10px;
+}
 
 /* Home page */
 .search-container {
@@ -176,7 +206,7 @@ header {
 
 .login-container {
     width: 700px;
-    height: 500px;
+    min-height: 500px;
     margin-top: calc(0px - var(--header-height));
 }
 
@@ -185,11 +215,30 @@ header {
     margin-top: calc(0px - var(--header-height));
 }
 
-.login {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 27px;
+/* AddOffer page */
+
+.add-offer-container {
+    width: 700px;
+    margin-bottom: 30px;
+}
+
+.offer-input {
+    width: 500px;
+    height: 50px;
+}
+
+.salary-input {
+    width: 400px;
+}
+
+.salary-select {
+    margin-left: 25px;
+    width: 75px;
+    height: 54px;
+    color: var(--gray);
+}
+
+.add-offer-form {
+    padding-bottom: 25px;
 }
 
