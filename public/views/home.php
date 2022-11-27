@@ -19,7 +19,7 @@
 <div class="container jc-start">
     <div class="search-container">
         <div class="search-wrapper">
-            <img class="search-icon" src="public/img/search-icon.svg">
+            <img class="search-icon icon" src="public/img/search-icon.svg">
             <input class="search-input" type="text" placeholder="Wyszukaj ofertę..."/>
         </div>
     </div>
