@@ -16,7 +16,7 @@
     </div>
 </header>
 <div class="container">
-    <div class="login-container">
+    <div class="content-container login-container">
         <div class="heading-container">
             <div class="heading-content">
                 <img class="icon" src="public/img/login-icon.svg">
