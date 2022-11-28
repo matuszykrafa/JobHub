@@ -35,8 +35,33 @@
             <hr class="heading-line"/>
         </div>
         <div class="offers-container">
+            <div class="offer-list-item">
+                <div class="offer-short-desc">
+                    <span>Frontend developer (React)</span>
+                    <span class="smaller-text">NewSpace</span>
+                </div>
+                <div class="tags-home-container tags-content">
+                    <div class="tag">Mid</div>
+                    <div class="tag">React</div>
+                    <div class="tag">Zdalnie</div>
+                    <div class="tag">15 000 PLN</div>
+                </div>
+            </div>
 
-
+        </div>
+        <div class="offers-container">
+            <div class="offer-list-item">
+                <div class="offer-short-desc">
+                    <span>Frontend developer (React)</span>
+                    <span class="smaller-text">NewSpace</span>
+                </div>
+                <div class="tags-home-container tags-content">
+                    <div class="tag">Mid</div>
+                    <div class="tag">React</div>
+                    <div class="tag">Zdalnie</div>
+                    <div class="tag">15 000 PLN</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
