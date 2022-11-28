@@ -2,7 +2,7 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
-    <title>JobHub - rejestracja</title>
+    <title>JobHub</title>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
     <div class="add-offer-container content-container ">
         <div class="heading-container">
             <div class="heading-content">
-                <img class="icon" src="public/img/add-icon.svg">
+                <img alt="add icon" class="icon" src="public/img/add-icon.svg">
                 <span>Dodaj ofertę</span>
             </div>
             <hr class="heading-line"/>
@@ -30,6 +30,7 @@
             </div>
             <input class="offer-input input" name="title" type="text" placeholder="tytuł">
             <input class="offer-input input" name="company" type="text" placeholder="firma">
+            <input class="offer-input input" name="localization" type="text" placeholder="lokalizacja">
             <div class="salary-container">
                 <input min="0" max="999999" class="salary-input input" name="salary" type="number" placeholder="oferowane wynagrodzenie brutto">
                 <select class="salary-select input" name="currency" disabled>

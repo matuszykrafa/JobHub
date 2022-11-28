@@ -19,7 +19,7 @@
     <div class="content-container register-container">
         <div class="heading-container">
             <div class="heading-content">
-                <img class="icon" src="public/img/register-icon.svg">
+                <img alt="register icon" class="icon" src="public/img/register-icon.svg">
                 <span>Zarejestruj</span>
             </div>
             <hr class="heading-line"/>
