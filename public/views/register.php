@@ -7,11 +7,16 @@
 
 <body>
 <header>
-    <div class="header-buttons"></div>
+    <div class="menu-left"></div>
+    <label class='menu-button-container' for="menu-toggle"></label>
     <div class="header-title">
         <a href="home">JobHub</a>
     </div>
-    <div class="header-buttons">
+    <input id="menu-toggle" type="checkbox" />
+    <label class='menu-button-container' for="menu-toggle">
+        <div class='menu-button'></div>
+    </label>
+    <div class="menu">
         <a href="login">Zaloguj</a>
     </div>
 </header>
