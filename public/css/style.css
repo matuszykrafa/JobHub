@@ -1,12 +1,4 @@
-:root {
-    --header-height: 80px;
-    --light-pink: #FDF7FF;
-    --white: #FFFDFF;
-    --dark-purple: #1F1926;
-    --purple: #7036D0;
-    --gray: #898989;
-    --light-purple: #7036D033;
-}
+@import "variables.css";
 
 html, body {
     margin: 0;
@@ -14,55 +6,6 @@ html, body {
 
 * {
     box-sizing: border-box;
-}
-
-header {
-    width: 100%;
-    height: var(--header-height);
-    background-color: var(--dark-purple);
-    display: flex;
-}
-
-.header-title {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--white);
-
-}
-
-.header-title a {
-    color: var(--white);
-    text-decoration: none;
-    font-style: normal;
-    font-size: 36px;
-    line-height: 43px;
-}
-
-#menu-toggle {
-    display: none;
-}
-
-.menu-left {
-    flex: 2;
-    padding-right: 10px;
-}
-
-.menu {
-    flex: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    color: var(--white);
-    padding-right: 10px;
-}
-
-.menu > a {
-    text-decoration: none;
-    color: var(--white);
 }
 
 .container {
@@ -402,29 +345,9 @@ input[type=number]::-webkit-inner-spin-button {
 
 
 @media only screen and (max-device-width: 420px) {
-    :root {
-        --header-height: 180px;
-    }
 
     .container {
         background-color: var(--white);
-    }
-
-    .header-buttons {
-        display: none;
-    }
-
-    .header-title a {
-        font-size: 6em;
-    }
-
-    header {
-        width: inherit;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding: 2em;
     }
 
     .content-container {
@@ -461,122 +384,6 @@ input[type=number]::-webkit-inner-spin-button {
         font-size: 2.2rem;
         padding: 10px 20px;
         border-radius: 10px;
-    }
-
-    /* Hamburger menu */
-
-
-    .menu-left {
-        display: none;
-    }
-
-    .menu-button-container {
-        display: flex;
-        height: 100%;
-        width: 72px;
-        cursor: pointer;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-    }
-
-    .menu-button, .menu-button::before, .menu-button::after {
-        display: block;
-        background-color: #fff;
-        position: absolute;
-        height: 0.5em;
-        width: 4.5em;
-        transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
-        border-radius: 6px;
-    }
-
-    .menu-button::before {
-        content: '';
-        margin-top: -1.3em;
-    }
-
-    .menu-button::after {
-        content: '';
-        margin-top: 1.3em;
-    }
-
-    #menu-toggle:checked + .menu-button-container .menu-button::before {
-        margin-top: 0px;
-        transform: rotate(405deg);
-    }
-
-    #menu-toggle:checked + .menu-button-container .menu-button {
-        background: rgba(255, 255, 255, 0);
-    }
-
-    #menu-toggle:checked + .menu-button-container .menu-button::after {
-        margin-top: 0px;
-        transform: rotate(-405deg);
-    }
-
-    #menu-toggle {
-        display: none;
-    }
-
-    .menu {
-        z-index: 100;
-        position: absolute;
-        top: 0;
-        margin-top: var(--header-height);
-        left: 0;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        list-style-type: none;
-        padding: 0;
-        gap: 0;
-        flex-wrap: nowrap;
-    }
-
-    .menu > * {
-        margin: 0 1rem;
-        overflow: hidden;
-    }
-
-    .menu > * {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 3em;
-        margin: 0;
-        padding: 1em 0;
-        width: 100%;
-        color: var(--white);
-        background-color: var(--dark-purple);
-    }
-
-    .menu > *:not(:last-child) {
-        border-bottom: 1px solid #444;
-    }
-
-    #menu-toggle ~ .menu * {
-        height: 0;
-        margin: 0;
-        padding: 0;
-        border: 0;
-        transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    #menu-toggle:checked ~ .menu * {
-        border: 1px solid #333;
-        height: 2.5em;
-        padding: 1em;
-        transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    #menu-toggle:checked ~ .menu * {
-        border: 1px solid #333;
-        height: 2.5em;
-        padding: 1em;
-        transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     /* Home page */

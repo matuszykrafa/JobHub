@@ -1,0 +1,17 @@
+:root {
+    --header-height: 80px;
+    --light-pink: #FDF7FF;
+    --white: #FFFDFF;
+    --dark-purple: #1F1926;
+    --purple: #7036D0;
+    --gray: #898989;
+    --light-purple: #7036D033;
+}
+
+
+@media only screen and (max-device-width: 420px) {
+    :root {
+        --header-height: 180px;
+    }
+
+}
