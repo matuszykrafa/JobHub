@@ -32,8 +32,8 @@
             <div class="heading-content">
                 <img alt="job icon" class="offer-icon icon" src="public/img/job-icon.svg">
                 <div class="offer-heading-text-container">
-                    <span class="job-title">Junior C# Developer - zdalnie</span>
-                    <span class="company-name">ITEdge</span>
+                    <span class="job-title">Junior C# Developer - zdalnie </span>
+                    <span class="company-name smaller-text">ITEdge</span>
                 </div>
             </div>
             <hr class="heading-line"/>
@@ -75,26 +75,28 @@ Do twoich zadań będzie należało:
                 </div>
             </div>
             <div class="offer-crucial-info content-background">
-                <div class="padding-0 offer-content-heading">
-                    <div class="crucial-content-container">
-                        <span class="salary-text">12000 PLN</span>
-                        <span class="smaller-text">Brutto miesięcznie</span>
+                <div class="salary-localization-wrapper">
+                    <div class="padding-0 offer-content-heading crucial-info-heading">
+                        <div class="crucial-content-container">
+                            <span class="salary-text">12000 PLN</span>
+                            <span class="smaller-text">Brutto miesięcznie</span>
+                        </div>
+                        <hr class="heading-line offer-line"/>
                     </div>
-                    <hr class="heading-line offer-line"/>
-                </div>
 
-                <div class="padding-0 offer-content-heading">
-                    <div class="crucial-content-container">
-                        <span>Zdalnie</span>
-                        <span class="smaller-text">Lokalizacja</span>
+                    <div class="padding-0 offer-content-heading crucial-info-heading">
+                        <div class="crucial-content-container">
+                            <span>Zdalnie</span>
+                            <span class="smaller-text">Lokalizacja</span>
+                        </div>
+                        <div class="crucial-content-container">
+                            <span>praca@itedge.pl</span>
+                            <span class="smaller-text">Kontakt</span>
+                        </div>
+                        <hr class="heading-line offer-line"/>
                     </div>
-                    <div class="crucial-content-container">
-                        <span>praca@itedge.pl</span>
-                        <span class="smaller-text">Kontakt</span>
-                    </div>
-                    <hr class="heading-line offer-line"/>
                 </div>
-                <div class="padding-0 offer-content-heading">
+                <div class="padding-0 offer-content-heading tags-wrapper">
                     <div class="tags-title">
                         <span class="smaller-text">Tagi</span>
                     </div>

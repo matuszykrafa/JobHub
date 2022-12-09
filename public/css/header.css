@@ -48,7 +48,7 @@ header {
 }
 
 
-@media only screen and (max-device-width: 420px) {
+@media only screen and (max-device-width: 430px) {
     header {
         width: inherit;
         display: flex;
