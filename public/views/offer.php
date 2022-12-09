@@ -35,6 +35,7 @@
                     <span class="job-title">Junior C# Developer - zdalnie </span>
                     <span class="company-name smaller-text">ITEdge</span>
                 </div>
+                <div class="tag red-tag">Usuń</div>
             </div>
             <hr class="heading-line"/>
         </div>

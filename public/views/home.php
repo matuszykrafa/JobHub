@@ -52,7 +52,6 @@
                     <div class="tag">React</div>
                     <div class="tag">Zdalnie</div>
                     <div class="tag">15 000 PLN</div>
-                    <div class="tag red-tag">Usuń</div>
                 </div>
             </div>
 
@@ -68,7 +67,6 @@
                     <div class="tag">React</div>
                     <div class="tag">Zdalnie</div>
                     <div class="tag">15 000 PLN</div>
-                    <div class="tag red-tag">Usuń</div>
                 </div>
             </div>
         </div>
