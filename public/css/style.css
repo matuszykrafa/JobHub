@@ -170,6 +170,7 @@ input[type=number]::-webkit-inner-spin-button {
     }
 
     .content-container {
+        width: 100%;
         background-color: var(--white);
         box-shadow: none;
         border-radius: 0;
@@ -192,6 +193,14 @@ input[type=number]::-webkit-inner-spin-button {
     }
 
     .input {
-        font-size: 0.8em;
+        font-size: 1em;
+    }
+
+    .form {
+        font-size: 2.5em;
+    }
+
+    .login-container {
+        margin-top: 3em;
     }
 }

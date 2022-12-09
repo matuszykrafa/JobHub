@@ -14,11 +14,11 @@
 }
 
 .salary-input {
-    width: calc(100% - 5.5em);
+    width: calc(100% - 6.5em);
 }
 
 .salary-select {
-    width: 5em;
+    width: 5.8em;
     color: var(--gray);
 }
 
@@ -34,5 +34,13 @@
 
     .add-offer-form {
         font-size: 3em;
+    }
+
+    .salary-input {
+        width: calc(100% - 5.5em);
+    }
+
+    .salary-select {
+        width: 5em;
     }
 }

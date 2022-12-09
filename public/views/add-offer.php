@@ -39,7 +39,7 @@
             <input class="input" name="company" type="text" placeholder="firma">
             <input class="input" name="localization" type="text" placeholder="lokalizacja">
             <div class="salary-container">
-                <input min="0" max="999999" class="salary-input input" name="salary" type="text" placeholder="oferowane wynagrodzenie brutto">
+                <input min="0" max="999999" class="salary-input input" name="salary" type="number" placeholder="oferowane wynagrodzenie brutto">
                 <select class="salary-select input" name="currency" disabled>
                     <option value="PLN">PLN</option>
                 </select>
