@@ -19,7 +19,7 @@
         <div class='menu-button'></div>
     </label>
     <div class="menu">
-        <span>Cześć, Jan!</span>
+        <span>Cześć, Jan! (Admin)</span>
         <a href="add-offer">Dodaj ofertę</a>
         <a href="login">Zaloguj</a>
         <a href="register">Rejestracja</a>
@@ -52,6 +52,7 @@
                     <div class="tag">React</div>
                     <div class="tag">Zdalnie</div>
                     <div class="tag">15 000 PLN</div>
+                    <div class="tag red-tag">Usuń</div>
                 </div>
             </div>
 
@@ -67,6 +68,7 @@
                     <div class="tag">React</div>
                     <div class="tag">Zdalnie</div>
                     <div class="tag">15 000 PLN</div>
+                    <div class="tag red-tag">Usuń</div>
                 </div>
             </div>
         </div>
