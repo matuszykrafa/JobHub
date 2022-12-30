@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
     <link rel="stylesheet" type="text/css" href="public/css/header.css">
     <link rel="stylesheet" type="text/css" href="public/css/home.css">
+    <script type="text/javascript" src="./public/js/home.js" defer></script>
     <title>JobHub</title>
 </head>
 
@@ -24,35 +25,22 @@
             </div>
             <hr class="heading-line"/>
         </div>
-        <div class="offers-container">
-            <div class="offer-list-item">
-                <div class="offer-short-desc">
-                    <span>Frontend developer (React)</span>
-                    <span class="smaller-text">NewSpace</span>
-                </div>
-                <div class="tags-home-container tags-content">
-                    <div class="tag">Mid</div>
-                    <div class="tag">React</div>
-                    <div class="tag">Zdalnie</div>
-                    <div class="tag">15 000 PLN</div>
-                </div>
-            </div>
-
-        </div>
-        <div class="offers-container">
-            <div class="offer-list-item">
-                <div class="offer-short-desc">
-                    <span>Frontend developer (React)</span>
-                    <span class="smaller-text">NewSpace</span>
-                </div>
-                <div class="tags-home-container tags-content">
-                    <div class="tag">Mid</div>
-                    <div class="tag">React</div>
-                    <div class="tag">Zdalnie</div>
-                    <div class="tag">15 000 PLN</div>
+        <?php if(isset($offers)) foreach ($offers as $offer): ?>
+            <div class="offers-container">
+                <div id="<?= $offer->getId(); ?>" class="offer-list-item">
+                    <div class="offer-short-desc">
+                        <span><?= $offer->getTitle();?></span>
+                        <span class="smaller-text"><?= $offer->getCompany();?></span>
+                    </div>
+                    <div class="tags-home-container tags-content">
+                        <div class="tag">Mid</div>
+                        <div class="tag">React</div>
+                        <div class="tag"><?= $offer->getLocalization();?></div>
+                        <div class="tag"><?= $offer->getSalary();?> PLN</div>
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php endforeach; ?>
     </div>
 </div>
 </body>

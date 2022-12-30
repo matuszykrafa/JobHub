@@ -39,4 +39,20 @@ VALUES (?, ?, ?)'
             $userToAdd->getLogin()
         ]);
     }
+
+    public function getUserIdBySessionGuid(): ?int {
+        $sessionGuid = $_COOKIE['session'];
+        $stmt = $this->database->connect()->prepare('
+            SELECT * FROM public.sessions WHERE "sessionGuid" = :sessionGuid
+        ');
+        $stmt->bindParam(':sessionGuid', $sessionGuid, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user == false) {
+            return null;
+        }
+        return $user["userId"];
+    }
 }

@@ -96,6 +96,11 @@ html, body {
     color: var(--white);
 }
 
+.button-tag:hover {
+    cursor: pointer;
+    background-color: var(--red);
+}
+
 /* Form */
 
 .button {

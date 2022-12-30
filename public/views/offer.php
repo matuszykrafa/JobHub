@@ -10,7 +10,7 @@
 <body>
 <?php include('header.php')?>
 <div class="container">
-    <?php if(isset($offer)) ?>
+    <?php if(isset($offer)) { ?>
         <div class="content-container offer-container">
             <div class="heading-container">
                 <div class="heading-content">
@@ -19,7 +19,9 @@
                         <span class="job-title"><?= $offer->getTitle();?></span>
                         <span class="company-name smaller-text"><?= $offer->getCompany();?></span>
                     </div>
-                    <!--<div class="tag red-tag">Usuń</div>-->
+                    <?php if(isset($canBeManaged) && $canBeManaged === true) { ?>
+                        <div class="tag red-tag button-tag">Usuń</div>
+                    <?php } ?>
                 </div>
                 <hr class="heading-line"/>
             </div>
@@ -76,7 +78,7 @@
                 </div>
             </div>
         </div>
-    <?php ?>
+    <?php } ?>
 
 </div>
 </body>

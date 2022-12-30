@@ -3,13 +3,16 @@
 require_once 'AppController.php';
 require_once __DIR__.'/../repository/TagRepository.php';
 require_once __DIR__.'/../repository/OfferRepository.php';
+require_once __DIR__.'/../repository/UserRepository.php';
 class OfferController extends AppController
 {
     private OfferRepository $offerRepository;
+    private UserRepository $userRepository;
     public function __construct()
     {
         parent::__construct();
         $this->offerRepository = new OfferRepository();
+        $this->userRepository = new UserRepository();
     }
     public function offer() {
 
@@ -23,8 +26,9 @@ class OfferController extends AppController
             $this->moveToLocation("home");
             return;
         }
+        $userId = $this->userRepository->getUserIdBySessionGuid();
 
-        $this->render('offer', ['offer' => $offer]);
+        $this->render('offer', ['offer' => $offer, 'canBeManaged' => $userId === $offer->getUserId()]);
     }
     public function addoffer() {
         if (!$this->isAuthenticated()) {
@@ -46,8 +50,9 @@ class OfferController extends AppController
         $requirements = $_POST['requirements'];
         $details = $_POST['details'];
         $contact = $_POST['contact'];
+        $userId = $this->userRepository->getUserIdBySessionGuid();
 
-        $offer = new Offer($title, $company, $localization, $salary, $requirements, $details, $contact);
+        $offer = new Offer($title, $company, $localization, $salary, $requirements, $details, $contact, $userId);
 
         $id = $this->offerRepository->addOffer($offer);
 //        foreach ($_POST['tags'] as $tag)

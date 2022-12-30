@@ -10,6 +10,7 @@ class Offer
     private string $requirements;
     private string $details;
     private string $contact;
+    private int $userId;
 
     public function __construct(string $title,
                                 string $company,
@@ -18,6 +19,7 @@ class Offer
                                 string $requirements,
                                 string $details,
                                 string $contact,
+                                string $userId,
                                 int $id = 0)
     {
         $this->id = $id;
@@ -28,6 +30,7 @@ class Offer
         $this->requirements = $requirements;
         $this->details = $details;
         $this->contact = $contact;
+        $this->userId = $userId;
     }
     public function getId(): int
     {
@@ -60,6 +63,10 @@ class Offer
 
     public function getContact(): string {
         return $this->contact;
+    }
+
+    public function getUserId(): int {
+        return $this->userId;
     }
 
 }

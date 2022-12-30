@@ -52,6 +52,13 @@
     align-items: center;
     padding: 25px;
     margin: 20px 80px;
+    cursor: pointer;
+}
+
+.offer-list-item:hover {
+    background: var(--light-pink);
+    text-decoration: underline;
+    text-decoration-color: var(--purple);
 }
 
 .offer-short-desc {

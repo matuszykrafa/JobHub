@@ -16,7 +16,6 @@ class TagRepository extends Repository
                 $tag['id']
             );
         }
-
         return $result;
     }
 }
