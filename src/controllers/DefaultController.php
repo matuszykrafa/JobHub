@@ -12,7 +12,7 @@ class DefaultController extends AppController {
     public function addoffer() {
         if ($this->isAuthenticated())
             $this->render('add-offer');
-
-        $this->moveToLocation("home");
+        else
+            $this->moveToLocation("home");
     }
 }
