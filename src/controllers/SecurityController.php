@@ -75,7 +75,9 @@ class SecurityController extends AppController {
     }
 
     public function logout() {
-
+        if (!isset($_COOKIE['session']))
+            $this->moveToLocation("home");
+        
         $sessionRepository = new SessionRepository();
         $sessionGuid = $_COOKIE['session'];
         $sessionRepository->deleteSession($sessionGuid);
