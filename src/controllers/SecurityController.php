@@ -3,12 +3,19 @@
 require_once 'AppController.php';
 require_once __DIR__ .'/../models/User.php';
 require_once __DIR__.'/../repository/UserRepository.php';
+require_once __DIR__.'/../repository/SessionRepository.php';
 
 class SecurityController extends AppController {
 
     public function login()
     {
+        if ($this->isAuthenticated()) {
+            $url = "http://$_SERVER[HTTP_HOST]";
+            header("Location: {$url}/home");
+        }
+
         $userRepository = new UserRepository();
+        $sessionRepository = new SessionRepository();
 
 
         if (!$this->isPost()) {
@@ -31,12 +38,25 @@ class SecurityController extends AppController {
         if (!password_verify($password, $user->getPassword())) {
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
+        $guid = $sessionRepository->createSession($user->getId());
+        $time = time() + (86400 * 30);
+        $cookie_name = "session";
+        $cookie_value = $guid;
+        setcookie($cookie_name, $cookie_value, $time, "/");
+        $cookie_name = "user";
+        $cookie_value = $user->getLogin();
+        setcookie($cookie_name, $cookie_value, $time, "/");
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/home");
     }
     public function register()
     {
+        if ($this->isAuthenticated()) {
+            $url = "http://$_SERVER[HTTP_HOST]";
+            header("Location: {$url}/home");
+        }
+
         $userRepository = new UserRepository();
 
         if (!$this->isPost()) {
@@ -66,7 +86,6 @@ class SecurityController extends AppController {
 
         $user = new User($email, password_hash($password, PASSWORD_BCRYPT), $login, $company);
         $userRepository->addUser($user);
-
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/login");

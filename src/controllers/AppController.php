@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__.'/../repository/SessionRepository.php';
 class AppController {
     private $request;
 
@@ -17,6 +18,17 @@ class AppController {
     {
         return $this->request === 'POST';
     }
+
+    protected function isAuthenticated(): bool
+    {
+        if (!isset($_COOKIE['session'])) {
+            return false;
+        }
+        $sessionGuid = $_COOKIE['session'];
+        $sessionRepository = new SessionRepository();
+        return $sessionRepository->sessionExists($sessionGuid);
+    }
+
     protected function render(string $template = null, array $variables = []) {
         $templatePath = 'public/views/'.$template.'.php';
 

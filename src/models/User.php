@@ -1,6 +1,7 @@
 <?php
 
 class User {
+    private $id;
     private $email;
     private $password;
     private $login;
@@ -10,12 +11,18 @@ class User {
         string $email,
         string $password,
         string $login,
-        string $company
+        string $company,
+        int $id = 0
     ) {
+        $this->id = $id;
         $this->email = $email;
         $this->password = $password;
         $this->login = $login;
         $this->company = $company;
+    }
+
+    public function getId(): int {
+        return $this->id;
     }
 
     public function getEmail(): string
