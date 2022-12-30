@@ -49,6 +49,7 @@ class OfferRepository extends Repository
             $offer['details'],
             $offer['contact'],
             $offer['userId'],
+            $offer['id']
         );
     }
 
@@ -69,5 +70,14 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
             $offer->getUserId()
         ]);
         return  $conn->lastInsertId();
+    }
+
+    public function deleteOffer(int $offerId) {
+        $conn = $this->database->connect();
+        $stmt = $conn->prepare('
+            DELETE FROM offers where offers.id = :offerId'
+        );
+        $stmt->bindParam(':offerId', $offerId, PDO::PARAM_INT);
+        $stmt->execute();
     }
 }

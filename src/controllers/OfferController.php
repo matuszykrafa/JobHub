@@ -27,7 +27,6 @@ class OfferController extends AppController
             return;
         }
         $userId = $this->userRepository->getUserIdBySessionGuid();
-
         $this->render('offer', ['offer' => $offer, 'canBeManaged' => $userId === $offer->getUserId()]);
     }
     public function addoffer() {
@@ -63,5 +62,24 @@ class OfferController extends AppController
             return;
         }
         $this->moveToLocation("offer?offerId=".$id);
+    }
+
+    public function deleteoffer() {
+        if (!$this->isAuthenticated() || !$this->isPost()) {
+            $this->moveToLocation("home");
+            return;
+        }
+
+        $userId = $this->userRepository->getUserIdBySessionGuid();
+        $offerId = $_POST['offerId'];
+        $offer = $this->offerRepository->getOffer($offerId);
+
+        if ($userId != $offer->getUserId()) {
+            echo "Unauthorized";
+            return;
+        }
+
+        $this->offerRepository->deleteOffer($offerId);
+        $this->moveToLocation("home");
     }
 }

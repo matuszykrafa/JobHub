@@ -20,7 +20,10 @@
                         <span class="company-name smaller-text"><?= $offer->getCompany();?></span>
                     </div>
                     <?php if(isset($canBeManaged) && $canBeManaged === true) { ?>
-                        <div class="tag red-tag button-tag">Usuń</div>
+                    <form action="delete-offer" method="post">
+                        <input name="offerId" value="<?= $offer->getId();?>" hidden="hidden"/>
+                        <button type="submit" class="tag red-tag button-tag">Usuń</button>
+                    </form>
                     <?php } ?>
                 </div>
                 <hr class="heading-line"/>

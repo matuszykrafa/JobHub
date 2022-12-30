@@ -94,6 +94,7 @@ html, body {
 .red-tag {
     background-color: var(--light-red);
     color: var(--white);
+    font-size: 0.8em;
 }
 
 .button-tag:hover {

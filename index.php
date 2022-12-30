@@ -9,6 +9,7 @@ Routing::get('', 'DefaultController');
 Routing::get('home', 'DefaultController');
 Routing::get('offer', 'OfferController');
 Routing::post('add-offer', 'OfferController');
+Routing::post('delete-offer', 'OfferController');
 Routing::post('login', 'SecurityController');
 Routing::post('register', 'SecurityController');
 Routing::post('logout', 'SecurityController');
