@@ -7,6 +7,12 @@ require_once __DIR__.'/../repository/SessionRepository.php';
 
 class SecurityController extends AppController {
 
+    private UserRepository $userRepository;
+    public function __construct()
+    {
+        parent::__construct();
+        $this->userRepository = new UserRepository();
+    }
     public function login()
     {
         if ($this->isAuthenticated())
@@ -15,12 +21,10 @@ class SecurityController extends AppController {
         if (!$this->isPost())
             return $this->render('login');
 
-        $userRepository = new UserRepository();
-
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $user = $userRepository->getUser($email);
+        $user = $this->userRepository->getUser($email);
 
         if (!$user)
             return $this->render('login', ['messages' => ['User not found!']]);
@@ -45,8 +49,6 @@ class SecurityController extends AppController {
             return $this->render('register');
 
 
-        $userRepository = new UserRepository();
-
         $email = $_POST['email'];
         $password = $_POST['password'];
         $repeat_password = $_POST['repeat_password'];
@@ -57,7 +59,7 @@ class SecurityController extends AppController {
 
 
 
-        $user = $userRepository->getUser($email);
+        $user = $this->userRepository->getUser($email);
 
         if ($user)
             return $this->render('login', ['messages' => ['User exists!']]);
@@ -68,7 +70,7 @@ class SecurityController extends AppController {
 
         $user = new User($email, password_hash($password, PASSWORD_BCRYPT), $login);
 
-        $userRepository->addUser($user);
+        $this->userRepository->addUser($user);
 
         $this->moveToLocation("login");
     }

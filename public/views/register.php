@@ -29,8 +29,8 @@
                 ?>
             </div>
             <input required class="input" name="email" type="email" placeholder="email">
-            <input minlength="5" required class="input" name="password" type="password" placeholder="hasło">
-            <input minlength="5" required class="input" name="repeat_password" type="password" placeholder="powtórz hasło">
+            <input autocomplete="new-password" minlength="5" required class="input" name="password" type="password" placeholder="hasło">
+            <input autocomplete="new-password" minlength="5" required class="input" name="repeat_password" type="password" placeholder="powtórz hasło">
             <input minlength="5" required class="input" name="login" type="text" placeholder="login">
             <button class="button" type="submit">Rejestracja</button>
         </form>
