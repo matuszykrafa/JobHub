@@ -3,19 +3,19 @@
 class User {
     private $email;
     private $password;
-    private $name;
-    private $surname;
+    private $login;
+    private $company;
 
     public function __construct(
         string $email,
         string $password,
-        string $name,
-        string $surname
+        string $login,
+        string $company
     ) {
         $this->email = $email;
         $this->password = $password;
-        $this->name = $name;
-        $this->surname = $surname;
+        $this->login = $login;
+        $this->company = $company;
     }
 
     public function getEmail(): string

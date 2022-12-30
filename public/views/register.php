@@ -32,6 +32,13 @@
         </div>
         <form class="form" action="register" method="POST">
             <div class="messages">
+                <?php
+                if(isset($messages)){
+                    foreach($messages as $message) {
+                        echo $message;
+                    }
+                }
+                ?>
             </div>
             <input class="input" name="login" type="text" placeholder="login">
             <input class="input" name="email" type="text" placeholder="email">
