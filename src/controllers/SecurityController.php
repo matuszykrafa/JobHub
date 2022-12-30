@@ -2,13 +2,14 @@
 
 require_once 'AppController.php';
 require_once __DIR__ .'/../models/User.php';
+require_once __DIR__.'/../repository/UserRepository.php';
 
 class SecurityController extends AppController {
 
     public function login()
     {
-        $encrypted = password_hash('admin', PASSWORD_BCRYPT);
-        $user = new User('jsnow@pk.edu.pl', $encrypted, 'Johnny', 'Snow');
+        $userRepository = new UserRepository();
+
 
         if (!$this->isPost()) {
             return $this->render('login');
@@ -16,6 +17,12 @@ class SecurityController extends AppController {
 
         $email = $_POST['email'];
         $password = $_POST['password'];
+
+        $user = $userRepository->getUser($email);
+
+        if (!$user) {
+            return $this->render('login', ['messages' => ['User not found!']]);
+        }
 
         if ($user->getEmail() !== $email) {
             return $this->render('login', ['messages' => ['User with this email not exist!']]);
@@ -30,6 +37,8 @@ class SecurityController extends AppController {
     }
     public function register()
     {
+        $userRepository = new UserRepository();
+
         if (!$this->isPost()) {
             return $this->render('register');
         }
@@ -44,11 +53,20 @@ class SecurityController extends AppController {
             return $this->render('register', ['messages' => ['Please provide full data.']]);
         }
 
+
+        $user = $userRepository->getUser($email);
+
+        if ($user) {
+            return $this->render('login', ['messages' => ['User exists!']]);
+        }
+
         if ($password != $repeat_password) {
             return $this->render('register', ['messages' => ['Passwords are not identical.']]);
         }
 
         $user = new User($email, password_hash($password, PASSWORD_BCRYPT), $login, $company);
+        $userRepository->addUser($user);
+
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/login");

@@ -40,7 +40,7 @@
                 }
                 ?>
             </div>
-            <input class="input" name="email" type="text" placeholder="login">
+            <input class="input" name="email" type="text" placeholder="email">
             <input class="input" name="password" type="password" placeholder="hasło">
             <button class="button" type="submit">Login</button>
         </form>

@@ -27,4 +27,14 @@ class User {
     {
         return $this->password;
     }
+
+    public function getLogin()
+    {
+        return $this->login;
+    }
+
+    public function getCompany()
+    {
+        return $this->company;
+    }
 }
