@@ -20,7 +20,7 @@
     </label>
     <div class="menu">
         <span>Cześć, Jan!</span>
-        <a href="login">Wyloguj</a>
+        <a href="logout">Wyloguj</a>
     </div>
 </header>
 <div class="container">

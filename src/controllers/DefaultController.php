@@ -10,6 +10,9 @@ class DefaultController extends AppController {
         $this->render('offer');
     }
     public function addoffer() {
-        $this->render('add-offer');
+        if ($this->isAuthenticated())
+            $this->render('add-offer');
+
+        $this->moveToLocation("home");
     }
 }

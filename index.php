@@ -11,4 +11,5 @@ Routing::get('offer', 'DefaultController');
 Routing::get('add-offer', 'DefaultController');
 Routing::post('login', 'SecurityController');
 Routing::post('register', 'SecurityController');
+Routing::post('logout', 'SecurityController');
 Routing::run($path);

@@ -74,6 +74,13 @@ class SecurityController extends AppController {
         $this->moveToLocation("login");
     }
 
+    public function logout() {
+
+        $this->clearCookies();
+
+        $this->moveToLocation("home");
+    }
+
     private function createLoginCookies(User $user) {
         $sessionRepository = new SessionRepository();
 
@@ -86,6 +93,18 @@ class SecurityController extends AppController {
 
         $cookie_name = "user";
         $cookie_value = $user->getLogin();
+        setcookie($cookie_name, $cookie_value, $time, "/");
+    }
+
+    private function clearCookies() {
+        $time = time() - 30;
+
+        $cookie_name = "session";
+        $cookie_value = '';
+        setcookie($cookie_name, $cookie_value, $time, "/");
+
+        $cookie_name = "user";
+        $cookie_value = 0;
         setcookie($cookie_name, $cookie_value, $time, "/");
     }
 }
