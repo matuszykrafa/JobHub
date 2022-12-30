@@ -47,15 +47,16 @@ class OfferController extends AppController
         $details = $_POST['details'];
         $contact = $_POST['contact'];
 
-        $offer = new Offer($title, $company, $localization, 3.1, $requirements, $details, $contact);
+        $offer = new Offer($title, $company, $localization, $salary, $requirements, $details, $contact);
 
-        $this->offerRepository->addOffer($offer);
+        $id = $this->offerRepository->addOffer($offer);
 //        foreach ($_POST['tags'] as $tag)
 //            echo " ".$tag." ";
 
-
-        $tagRepository = new TagRepository();
-        $tags = $tagRepository->getTags();
-        $this->render('offer', ['offer' => $offer]);
+        if (!$id) {
+            $this->moveToLocation("home");
+            return;
+        }
+        $this->moveToLocation("offer?offerId=".$id);
     }
 }

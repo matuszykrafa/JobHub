@@ -6,7 +6,7 @@ class Offer
     private string $title;
     private string $company;
     private string $localization;
-    private float $salary;
+    private int $salary;
     private string $requirements;
     private string $details;
     private string $contact;

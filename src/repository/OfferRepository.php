@@ -29,8 +29,9 @@ class OfferRepository extends Repository
         );
     }
 
-    public function addOffer(Offer $offer) {
-        $stmt = $this->database->connect()->prepare('
+    public function addOffer(Offer $offer): int {
+        $conn = $this->database->connect();
+        $stmt = $conn->prepare('
             INSERT INTO offers (title, company, localization, salary, requirements, details, contact)
 VALUES (?, ?, ?, ?, ?, ?, ?)'
         );
@@ -43,5 +44,6 @@ VALUES (?, ?, ?, ?, ?, ?, ?)'
             $offer->getDetails(),
             $offer->getContact()
         ]);
+        return  $conn->lastInsertId();
     }
 }
