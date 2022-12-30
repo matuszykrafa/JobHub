@@ -9,59 +9,43 @@ class SecurityController extends AppController {
 
     public function login()
     {
-        if ($this->isAuthenticated()) {
-            $url = "http://$_SERVER[HTTP_HOST]";
-            header("Location: {$url}/home");
-        }
+        if ($this->isAuthenticated())
+            $this->moveToLocation("home");
+
+        if (!$this->isPost())
+            return $this->render('login');
 
         $userRepository = new UserRepository();
-        $sessionRepository = new SessionRepository();
-
-
-        if (!$this->isPost()) {
-            return $this->render('login');
-        }
 
         $email = $_POST['email'];
         $password = $_POST['password'];
 
         $user = $userRepository->getUser($email);
 
-        if (!$user) {
+        if (!$user)
             return $this->render('login', ['messages' => ['User not found!']]);
-        }
 
-        if ($user->getEmail() !== $email) {
+        if ($user->getEmail() !== $email)
             return $this->render('login', ['messages' => ['User with this email not exist!']]);
-        }
 
-        if (!password_verify($password, $user->getPassword())) {
+        if (!password_verify($password, $user->getPassword()))
             return $this->render('login', ['messages' => ['Wrong password!']]);
-        }
-        $guid = $sessionRepository->createSession($user->getId());
-        $time = time() + (86400 * 30);
-        $cookie_name = "session";
-        $cookie_value = $guid;
-        setcookie($cookie_name, $cookie_value, $time, "/");
-        $cookie_name = "user";
-        $cookie_value = $user->getLogin();
-        setcookie($cookie_name, $cookie_value, $time, "/");
 
-        $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: {$url}/home");
+
+        $this->createLoginCookies($user);
+
+        $this->moveToLocation("home");
     }
     public function register()
     {
-        if ($this->isAuthenticated()) {
-            $url = "http://$_SERVER[HTTP_HOST]";
-            header("Location: {$url}/home");
-        }
+        if ($this->isAuthenticated())
+            $this->moveToLocation("home");
+
+        if (!$this->isPost())
+            return $this->render('register');
+
 
         $userRepository = new UserRepository();
-
-        if (!$this->isPost()) {
-            return $this->render('register');
-        }
 
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -69,25 +53,39 @@ class SecurityController extends AppController {
         $login = $_POST['login'];
         $company = $_POST['company'];
 
-        if (strlen($email) == 0 || strlen($password) == 0 || strlen($login) == 0 || strlen($company) == 0) {
+        if (strlen($email) == 0 || strlen($password) == 0 || strlen($login) == 0 || strlen($company) == 0)
             return $this->render('register', ['messages' => ['Please provide full data.']]);
-        }
+
 
 
         $user = $userRepository->getUser($email);
 
-        if ($user) {
+        if ($user)
             return $this->render('login', ['messages' => ['User exists!']]);
-        }
 
-        if ($password != $repeat_password) {
+        if ($password != $repeat_password)
             return $this->render('register', ['messages' => ['Passwords are not identical.']]);
-        }
+
 
         $user = new User($email, password_hash($password, PASSWORD_BCRYPT), $login, $company);
+
         $userRepository->addUser($user);
 
-        $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: {$url}/login");
+        $this->moveToLocation("login");
+    }
+
+    private function createLoginCookies(User $user) {
+        $sessionRepository = new SessionRepository();
+
+        $guid = $sessionRepository->createSession($user->getId());
+        $time = time() + (86400 * 30);
+
+        $cookie_name = "session";
+        $cookie_value = $guid;
+        setcookie($cookie_name, $cookie_value, $time, "/");
+
+        $cookie_name = "user";
+        $cookie_value = $user->getLogin();
+        setcookie($cookie_name, $cookie_value, $time, "/");
     }
 }

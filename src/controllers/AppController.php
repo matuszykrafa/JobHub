@@ -29,6 +29,11 @@ class AppController {
         return $sessionRepository->sessionExists($sessionGuid);
     }
 
+    protected function moveToLocation(string $location) {
+        $url = "http://$_SERVER[HTTP_HOST]";
+        header("Location: {$url}/".$location);
+    }
+
     protected function render(string $template = null, array $variables = []) {
         $templatePath = 'public/views/'.$template.'.php';
 
