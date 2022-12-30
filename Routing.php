@@ -1,6 +1,7 @@
 <?php
 
 require_once 'src/controllers/DefaultController.php';
+require_once 'src/controllers/SecurityController.php';
 
 class Routing {
     public static $routes;
@@ -8,7 +9,9 @@ class Routing {
     public static function get($url, $controller) {
         self::$routes[$url] = $controller;
     }
-
+    public static function post($url, $view) {
+        self::$routes[$url] = $view;
+    }
     public static function run($url) {
         $action = explode("/", $url)[0];
 
