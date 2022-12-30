@@ -62,7 +62,7 @@ class SecurityController extends AppController {
         $user = $this->userRepository->getUser($email);
 
         if ($user)
-            return $this->render('login', ['messages' => ['User exists!']]);
+            return $this->render('register', ['messages' => ['User exists!']]);
 
         if ($password != $repeat_password)
             return $this->render('register', ['messages' => ['Passwords are not identical.']]);

@@ -8,11 +8,13 @@ class OfferController extends AppController
 {
     private OfferRepository $offerRepository;
     private UserRepository $userRepository;
+    private TagRepository $tagRepository;
     public function __construct()
     {
         parent::__construct();
         $this->offerRepository = new OfferRepository();
         $this->userRepository = new UserRepository();
+        $this->tagRepository = new TagRepository();
     }
     public function offer() {
 
@@ -36,8 +38,7 @@ class OfferController extends AppController
         }
 
         if (!$this->isPost()) {
-            $tagRepository = new TagRepository();
-            $tags = $tagRepository->getTags();
+            $tags = $this->tagRepository->getTags();
             $this->render('add-offer', ['tags' => $tags]);
             return;
         }
@@ -50,10 +51,12 @@ class OfferController extends AppController
         $details = $_POST['details'];
         $contact = $_POST['contact'];
         $userId = $this->userRepository->getUserIdBySessionGuid();
+        $tags = $_POST['tags'];
 
         $offer = new Offer($title, $company, $localization, $salary, $requirements, $details, $contact, $userId);
 
         $id = $this->offerRepository->addOffer($offer);
+        //$this->tagRepository->addTags($tags);
 //        foreach ($_POST['tags'] as $tag)
 //            echo " ".$tag." ";
 
