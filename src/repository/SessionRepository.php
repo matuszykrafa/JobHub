@@ -2,9 +2,9 @@
 
 require_once 'Repository.php';
 require_once __DIR__.'/../models/User.php';
+
 class SessionRepository extends Repository
 {
-
     public function createSession(int $userId): string
     {
         $stmt = $this->database->connect()->prepare('INSERT INTO sessions ("userId", "sessionGuid") VALUES (?, ?)'
@@ -25,8 +25,23 @@ class SessionRepository extends Repository
         $stmt->execute();
 
         $session = $stmt->fetch(PDO::FETCH_ASSOC);
-
         return $session != false;
+    }
+
+    public function deleteSession(string $sessionGuid) {
+        $stmt = $this->database->connect()->prepare('
+            DELETE FROM public.sessions WHERE "sessionGuid" = :guid
+        ');
+        $stmt->bindParam(':guid', $sessionGuid, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+    public function deleteOldSessions() {
+        $time = time() - (86400 * 30);
+        $stmt = $this->database->connect()->prepare('
+            DELETE FROM public.sessions WHERE "dateGenerated" < to_timestamp(:time)
+        ');
+        $stmt->bindParam(':time', $time, PDO::PARAM_INT);
+        $stmt->execute();
     }
 
     private function createGUID()
