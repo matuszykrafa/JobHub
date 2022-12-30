@@ -27,8 +27,8 @@
                 }
                 ?>
             </div>
-            <input class="input" name="email" type="text" placeholder="email">
-            <input class="input" name="password" type="password" placeholder="hasło">
+            <input required class="input" name="email" type="email" placeholder="email">
+            <input required class="input" name="password" type="password" placeholder="hasło">
             <button class="button" type="submit">Login</button>
         </form>
     </div>

@@ -136,6 +136,16 @@ input[type=number]::-webkit-inner-spin-button {
     outline: 0.1em solid var(--purple);
 }
 
+.no-valid {
+    color: var(--light-red);
+    outline: 0.1em solid var(--light-red);
+    font-weight: bolder;
+}
+
+.no-valid:focus-visible {
+    outline: 0.1em solid var(--light-red);
+}
+
 .textarea {
     font-size: inherit;
     padding: 1em 0 1em 1em;

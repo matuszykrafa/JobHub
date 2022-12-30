@@ -51,9 +51,8 @@ class SecurityController extends AppController {
         $password = $_POST['password'];
         $repeat_password = $_POST['repeat_password'];
         $login = $_POST['login'];
-        $company = $_POST['company'];
 
-        if (strlen($email) == 0 || strlen($password) == 0 || strlen($login) == 0 || strlen($company) == 0)
+        if (strlen($email) == 0 || strlen($password) == 0 || strlen($login) == 0)
             return $this->render('register', ['messages' => ['Please provide full data.']]);
 
 
@@ -67,7 +66,7 @@ class SecurityController extends AppController {
             return $this->render('register', ['messages' => ['Passwords are not identical.']]);
 
 
-        $user = new User($email, password_hash($password, PASSWORD_BCRYPT), $login, $company);
+        $user = new User($email, password_hash($password, PASSWORD_BCRYPT), $login);
 
         $userRepository->addUser($user);
 

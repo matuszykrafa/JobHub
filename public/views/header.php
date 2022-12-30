@@ -12,7 +12,7 @@
         <?php
         if (isset($_COOKIE['session']) && isset($_COOKIE['user'])) {
             echo (
-                '<span>Cześć, '.$_COOKIE['user'].'</span>
+                '<span>Cześć, '.$_COOKIE['user'].'!</span>
                 <a href="add-offer">Dodaj ofertę</a>
                 <a href="logout">Wyloguj</a>'
             );

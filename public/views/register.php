@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
     <link rel="stylesheet" type="text/css" href="public/css/header.css">
+    <script type="text/javascript" src="./public/js/register.js" defer></script>
     <title>JobHub - rejestracja</title>
 </head>
 
@@ -27,11 +28,10 @@
                 }
                 ?>
             </div>
-            <input class="input" name="login" type="text" placeholder="login">
-            <input class="input" name="email" type="text" placeholder="email">
-            <input class="input" name="password" type="password" placeholder="hasło">
-            <input class="input" name="repeat_password" type="password" placeholder="powtórz hasło">
-            <input class="input" name="company" type="text" placeholder="nazwa firmy (opcjonalnie)">
+            <input required class="input" name="email" type="email" placeholder="email">
+            <input minlength="5" required class="input" name="password" type="password" placeholder="hasło">
+            <input minlength="5" required class="input" name="repeat_password" type="password" placeholder="powtórz hasło">
+            <input minlength="5" required class="input" name="login" type="text" placeholder="login">
             <button class="button" type="submit">Rejestracja</button>
         </form>
     </div>
