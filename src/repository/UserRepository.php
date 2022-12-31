@@ -24,19 +24,21 @@ class UserRepository extends Repository
             $user['email'],
             $user['password'],
             $user['login'],
+            RoleEnum::from($user['role']),
             $user['id']
         );
     }
     public function addUser(User $userToAdd)
     {
         $stmt = $this->database->connect()->prepare('
-            INSERT INTO users (email, password, login)
-VALUES (?, ?, ?)'
+            INSERT INTO users (email, password, login, role)
+VALUES (?, ?, ?,?)'
         );
         $stmt->execute([
             $userToAdd->getEmail(),
             $userToAdd->getPassword(),
-            $userToAdd->getLogin()
+            $userToAdd->getLogin(),
+            $userToAdd->getRole()->value
         ]);
     }
 

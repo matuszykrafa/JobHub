@@ -46,7 +46,7 @@ class SessionRepository extends Repository
 
     private function createGUID()
     {
-        mt_srand((double)microtime()*10000);
+        mt_srand(intval(floatval(microtime())*10000));
         $set_charid = strtoupper(md5(uniqid(rand(), true)));
         $set_hyphen = chr(45);
         $set_uuid =
