@@ -28,8 +28,7 @@ class OfferController extends AppController
             $this->moveToLocation("home");
             return;
         }
-        $userId = $this->userRepository->getUserIdBySessionGuid();
-        $this->render('offer', ['offer' => $offer, 'canBeManaged' => $userId === $offer->getUserId()]);
+        $this->render('offer', ['offer' => $offer, 'canBeManaged' => $this->canBeManaged($offer)]);
     }
     public function addoffer() {
         if (!$this->isAuthenticated()) {
@@ -84,5 +83,12 @@ class OfferController extends AppController
 
         $this->offerRepository->deleteOffer($offerId);
         $this->moveToLocation("home");
+    }
+
+    private function canBeManaged(Offer $offer): bool {
+        $user = $this->userRepository->getUserBySessionGuid();
+        $offerIsCreatedByUser = $user->getId() === $offer->getUserId();
+        $userIsAdmin = $user->getRole() === RoleEnum::Admin;
+        return $offerIsCreatedByUser || $userIsAdmin;
     }
 }

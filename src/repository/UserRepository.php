@@ -42,10 +42,10 @@ VALUES (?, ?, ?,?)'
         ]);
     }
 
-    public function getUserIdBySessionGuid(): ?int {
+    public function getUserBySessionGuid(): ?User {
         $sessionGuid = $_COOKIE['session'];
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM public.sessions WHERE "sessionGuid" = :sessionGuid
+            SELECT users.* FROM sessions JOIN users ON sessions."userId" = users.id WHERE sessions."sessionGuid" = :sessionGuid
         ');
         $stmt->bindParam(':sessionGuid', $sessionGuid, PDO::PARAM_STR);
         $stmt->execute();
@@ -55,6 +55,12 @@ VALUES (?, ?, ?,?)'
         if ($user == false) {
             return null;
         }
-        return $user["userId"];
+        return new User(
+            $user['email'],
+            $user['password'],
+            $user['login'],
+            RoleEnum::from($user['role']),
+            $user['id']
+        );
     }
 }
