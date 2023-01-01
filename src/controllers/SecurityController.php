@@ -110,20 +110,4 @@ class SecurityController extends AppController {
         $cookie_value = $user->getRole()->name;
         setcookie($cookie_name, $cookie_value, $time, "/");
     }
-
-    private function clearCookies() {
-        $time = time() - 30;
-
-        $cookie_name = "session";
-        $cookie_value = '';
-        setcookie($cookie_name, $cookie_value, $time, "/");
-
-        $cookie_name = "user";
-        $cookie_value = 0;
-        setcookie($cookie_name, $cookie_value, $time, "/");
-
-        $cookie_name = "role";
-        $cookie_value = 'role';
-        setcookie($cookie_name, $cookie_value, $time, "/");
-    }
 }

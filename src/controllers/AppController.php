@@ -7,6 +7,8 @@ class AppController {
     public function __construct()
     {
         $this->request = $_SERVER['REQUEST_METHOD'];
+        if (!$this->isAuthenticated())
+            $this->clearCookies();
     }
 
     protected function isGet(): bool
@@ -48,5 +50,20 @@ class AppController {
         }
 
         print $output;
+    }
+    protected function clearCookies() {
+        $time = time() - 30;
+
+        $cookie_name = "session";
+        $cookie_value = '';
+        setcookie($cookie_name, $cookie_value, $time, "/");
+
+        $cookie_name = "user";
+        $cookie_value = 0;
+        setcookie($cookie_name, $cookie_value, $time, "/");
+
+        $cookie_name = "role";
+        $cookie_value = 'role';
+        setcookie($cookie_name, $cookie_value, $time, "/");
     }
 }
