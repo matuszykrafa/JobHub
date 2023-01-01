@@ -18,4 +18,23 @@ class TagRepository extends Repository
         }
         return $result;
     }
+
+    public function getTagsForOffer(int $offerId) {
+        $result = [];
+
+        $stmt = $this->database->connect()->prepare(
+            'SELECT tags.* FROM tags JOIN offers_tags ON tags."id" = offers_tags."tagId" 
+                    WHERE offers_tags."offerId" = :offerId');
+        $stmt->bindParam(':offerId', $offerId, PDO::PARAM_INT);
+        $stmt->execute();
+        $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($tags as $tag) {
+            $result[] = new Tag(
+                $tag['tagName'],
+                $tag['id']
+            );
+        }
+        return $result;
+    }
 }

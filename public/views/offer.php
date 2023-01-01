@@ -72,9 +72,9 @@
                             <span class="smaller-text">Tagi</span>
                         </div>
                         <div class="tags-content">
-                            <div class="tag">Junior</div>
-                            <div class="tag">C#</div>
-                            <div class="tag">Zdalnie</div>
+                            <?php if(isset($tags)) foreach ($tags as $tag):?>
+                                <div class="tag"><?= $tag->getTagName();?></div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
 

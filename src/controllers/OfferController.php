@@ -28,7 +28,9 @@ class OfferController extends AppController
             $this->moveToLocation("home");
             return;
         }
-        $this->render('offer', ['offer' => $offer, 'canBeManaged' => $this->canBeManaged($offer)]);
+
+        $tags = $this->tagRepository->getTagsForOffer($offer->getId());
+        $this->render('offer', ['offer' => $offer, 'canBeManaged' => $this->canBeManaged($offer), 'tags' => $tags]);
     }
     public function addoffer() {
         if (!$this->isAuthenticated()) {
