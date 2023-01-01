@@ -87,6 +87,8 @@ class OfferController extends AppController
 
     private function canBeManaged(Offer $offer): bool {
         $user = $this->userRepository->getUserBySessionGuid();
+        if (!$user) return false;
+
         $offerIsCreatedByUser = $user->getId() === $offer->getUserId();
         $userIsAdmin = $user->getRole() === RoleEnum::Admin;
         return $offerIsCreatedByUser || $userIsAdmin;

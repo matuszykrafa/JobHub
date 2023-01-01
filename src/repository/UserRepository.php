@@ -43,6 +43,8 @@ VALUES (?, ?, ?,?)'
     }
 
     public function getUserBySessionGuid(): ?User {
+        if (!isset($_COOKIE['session'])) return null;
+
         $sessionGuid = $_COOKIE['session'];
         $stmt = $this->database->connect()->prepare('
             SELECT users.* FROM sessions JOIN users ON sessions."userId" = users.id WHERE sessions."sessionGuid" = :sessionGuid

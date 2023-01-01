@@ -104,6 +104,11 @@ class SecurityController extends AppController {
         $cookie_name = "user";
         $cookie_value = $user->getLogin();
         setcookie($cookie_name, $cookie_value, $time, "/");
+
+        if ($user->getRole() == RoleEnum::Admin)
+        $cookie_name = "role";
+        $cookie_value = $user->getRole()->name;
+        setcookie($cookie_name, $cookie_value, $time, "/");
     }
 
     private function clearCookies() {
@@ -115,6 +120,10 @@ class SecurityController extends AppController {
 
         $cookie_name = "user";
         $cookie_value = 0;
+        setcookie($cookie_name, $cookie_value, $time, "/");
+
+        $cookie_name = "role";
+        $cookie_value = 'role';
         setcookie($cookie_name, $cookie_value, $time, "/");
     }
 }
