@@ -53,8 +53,9 @@ class OfferRepository extends Repository
         );
     }
 
-    public function addOffer(Offer $offer): int {
+    public function addOffer(Offer $offer, $tags): int {
         $conn = $this->database->connect();
+        $conn->beginTransaction();
         $stmt = $conn->prepare('
             INSERT INTO offers (title, company, localization, salary, requirements, details, contact, "userId")
 VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
@@ -69,7 +70,14 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
             $offer->getContact(),
             $offer->getUserId()
         ]);
-        return  $conn->lastInsertId();
+        $offerId = $conn->lastInsertId();
+
+        foreach ($_POST['tags'] as $tagId) {
+            $stmt = $conn->prepare('INSERT INTO offers_tags ("tagId", "offerId") VALUES (?, ?)');
+            $stmt->execute([$tagId, $offerId]);
+        }
+        $conn->commit();
+        return  $offerId;
     }
 
     public function deleteOffer(int $offerId) {

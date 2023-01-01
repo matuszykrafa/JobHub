@@ -49,15 +49,13 @@ class OfferController extends AppController
         $requirements = $_POST['requirements'];
         $details = $_POST['details'];
         $contact = $_POST['contact'];
-        $userId = $this->userRepository->getUserIdBySessionGuid();
+        $user = $this->userRepository->getUserBySessionGuid();
+        $userId = $user->getId();
         $tags = $_POST['tags'];
 
         $offer = new Offer($title, $company, $localization, $salary, $requirements, $details, $contact, $userId);
 
-        $id = $this->offerRepository->addOffer($offer);
-        //$this->tagRepository->addTags($tags);
-//        foreach ($_POST['tags'] as $tag)
-//            echo " ".$tag." ";
+        $id = $this->offerRepository->addOffer($offer, $tags);
 
         if (!$id) {
             $this->moveToLocation("home");
