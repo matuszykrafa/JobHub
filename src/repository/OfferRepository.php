@@ -27,6 +27,19 @@ class OfferRepository extends Repository
         }
         return $result;
     }
+
+    public function getOffersWithTags() {
+
+        $stmt = $this->database->connect()->prepare('
+            SELECT offers.*, array_to_json(string_to_array(string_agg(tags."tagName", \';\'),\';\')) as tags FROM offers 
+            INNER JOIN offers_tags ON offers."id" = offers_tags."offerId" 
+            INNER JOIN tags ON offers_tags."tagId" = tags."id" 
+            GROUP BY offers.id, offers.title, offers.company, offers.localization, offers.salary, offers.requirements, 
+                     offers.details, offers.contact, offers."userId";
+        ');
+        $stmt->execute();
+        return  $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function getOffer(int $id): ?Offer {
         $stmt = $this->database->connect()->prepare('
             SELECT * FROM public.offers WHERE id = :id

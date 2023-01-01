@@ -32,6 +32,13 @@ class OfferController extends AppController
         $tags = $this->tagRepository->getTagsForOffer($offer->getId());
         $this->render('offer', ['offer' => $offer, 'canBeManaged' => $this->canBeManaged($offer), 'tags' => $tags]);
     }
+    public function getOffersWithTags() {
+
+        $offersWithTags = $this->offerRepository->getOffersWithTags();
+        $jsonResponse = json_encode($offersWithTags, JSON_PRETTY_PRINT);
+        header('content-type: application/json; charset=UTF-8');
+        print_r ( $jsonResponse );
+    }
     public function addoffer() {
         if (!$this->isAuthenticated()) {
             $this->moveToLocation("home");
