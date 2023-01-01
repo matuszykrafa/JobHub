@@ -25,22 +25,24 @@
             </div>
             <hr class="heading-line"/>
         </div>
-        <?php if(isset($offers)) foreach ($offers as $offer): ?>
-            <div class="offers-container">
-                <div id="<?= $offer->getId(); ?>" class="offer-list-item">
-                    <div class="offer-short-desc">
-                        <span><?= $offer->getTitle();?></span>
-                        <span class="smaller-text"><?= $offer->getCompany();?></span>
-                    </div>
-                    <div class="tags-home-container tags-content">
-                        <div class="tag">Mid</div>
-                        <div class="tag">React</div>
-                        <div class="tag"><?= $offer->getLocalization();?></div>
-                        <div class="tag"><?= $offer->getSalary();?> PLN</div>
-                    </div>
-                </div>
-            </div>
-        <?php endforeach; ?>
+        <section id="offers-container">
+
+        </section>
+
     </div>
 </div>
 </body>
+
+<template id="offer-template">
+    <div class="offers-container">
+        <div class="offer-list-item">
+            <div class="offer-short-desc">
+                <span class="offer-title"></span>
+                <span class="smaller-text"></span>
+            </div>
+            <div class="tags-home-container tags-content">
+
+            </div>
+        </div>
+    </div>
+</template>

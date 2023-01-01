@@ -79,7 +79,8 @@ class OfferController extends AppController
             return;
         }
 
-        $userId = $this->userRepository->getUserIdBySessionGuid();
+        $user = $this->userRepository->getUserBySessionGuid();
+        $userId = $user->getId();
         $offerId = $_POST['offerId'];
         $offer = $this->offerRepository->getOffer($offerId);
 
