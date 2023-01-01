@@ -7,13 +7,21 @@ class SessionRepository extends Repository
 {
     public function createSession(int $userId): string
     {
-        $stmt = $this->database->connect()->prepare('INSERT INTO sessions ("userId", "sessionGuid") VALUES (?, ?)'
-        );
+        $conn = $this->database->connect();
+        $conn->beginTransaction();
+
+        $stmt = $conn->prepare('DELETE FROM sessions WHERE "userId" = :userId');
+        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $stmt = $conn->prepare('INSERT INTO sessions ("userId", "sessionGuid") VALUES (?, ?)');
         $guid = $this->createGUID();
         $stmt->execute([
             $userId,
             $guid
         ]);
+
+        $conn->commit();
         return $guid;
     }
 
