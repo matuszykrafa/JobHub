@@ -9,6 +9,7 @@ Routing::get('', 'DefaultController');
 Routing::get('home', 'DefaultController');
 Routing::get('offer', 'OfferController');
 Routing::get('getOffersWithTags', 'OfferController');
+Routing::post('getOffersWithTagsFilter', 'OfferController');
 Routing::post('add-offer', 'OfferController');
 Routing::post('delete-offer', 'OfferController');
 Routing::post('login', 'SecurityController');

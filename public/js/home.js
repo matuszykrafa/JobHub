@@ -1,10 +1,39 @@
-
 const offersContainer = document.getElementById("offers-container");
+const searchInput = document.querySelector('input[class="search-input"]');
+const searchIcon = document.querySelector('img[class="search-icon icon"]');
+
+searchInput.addEventListener("keyup", e => onSearchKeyUp(e));
+searchIcon.addEventListener("click", onSearch)
 
 
-window.onload = (event) => {
+window.onload = () => {
     loadOffers();
 };
+
+function onSearchKeyUp(e) {
+    if (e.key != "Enter") return;
+    e.preventDefault();
+    onSearch();
+}
+
+function onSearch() {
+    const data = {search: searchInput.value};
+    fetch("/getOffersWithTagsFilter", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(function (response) {
+        return response.json();
+    }).then(function (offers) {
+        offers.map(x => x.tags = x.tags.split(';'));
+        offersContainer.innerHTML = "";
+        offers.forEach(x => createOffer(x))
+    });
+}
+
+
 
 function loadOffers() {
     fetch("/getOffersWithTags", {
@@ -15,7 +44,7 @@ function loadOffers() {
     }).then(function (response) {
         return response.json();
     }).then(function (offers) {
-        offers.map(x => x.tags = JSON.parse(x.tags));
+        offers.map(x => x.tags = x.tags.split(';'));
         offersContainer.innerHTML = "";
         offers.forEach(x => createOffer(x))
     });

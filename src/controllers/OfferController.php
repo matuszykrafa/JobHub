@@ -33,11 +33,25 @@ class OfferController extends AppController
         $this->render('offer', ['offer' => $offer, 'canBeManaged' => $this->canBeManaged($offer), 'tags' => $tags]);
     }
     public function getOffersWithTags() {
-
         $offersWithTags = $this->offerRepository->getOffersWithTags();
         $jsonResponse = json_encode($offersWithTags, JSON_PRETTY_PRINT);
         header('content-type: application/json; charset=UTF-8');
+        http_response_code(200);
         print_r ( $jsonResponse );
+    }
+    public function getOffersWithTagsFilter() {
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            $decoded = json_decode($content, true);
+
+            $offersWithTagsFiltered = $this->offerRepository->getOffersWithTagsFilter($decoded['search']);
+            $jsonResponse = json_encode($offersWithTagsFiltered, JSON_PRETTY_PRINT);
+            header('content-type: application/json; charset=UTF-8');
+            http_response_code(200);
+            print_r ( $jsonResponse );
+
+        }
     }
     public function addoffer() {
         if (!$this->isAuthenticated()) {
