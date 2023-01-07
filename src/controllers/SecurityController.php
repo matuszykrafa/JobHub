@@ -105,9 +105,10 @@ class SecurityController extends AppController {
         $cookie_value = $user->getLogin();
         setcookie($cookie_name, $cookie_value, $time, "/");
 
-        if ($user->getRole() == RoleEnum::Admin)
-        $cookie_name = "role";
-        $cookie_value = $user->getRole()->name;
-        setcookie($cookie_name, $cookie_value, $time, "/");
+        if ($user->getRole() == RoleEnum::Admin) {
+            $cookie_name = "role";
+            $cookie_value = $user->getRole()->name;
+            setcookie($cookie_name, $cookie_value, $time, "/");
+        }
     }
 }

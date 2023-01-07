@@ -34,7 +34,7 @@
             <textarea required class="textarea" name="details" rows="10" placeholder="szczegóły"></textarea>
             <input required class="input" name="contact" type="text" placeholder="kontakt">
             <!--<input required class="input" name="tags" type="text" placeholder="tagi (oddzielone przecinkami)">-->
-            <select aria-label="tags" multiple class="input multiple-input" name="tags[]">
+            <select required aria-label="tags" multiple class="input multiple-input" name="tags[]">
                 <?php if(isset($tags)) { foreach ($tags as $tag): ?>
                     <option class="multiple-option" value="<?= $tag->getId();?>"><?= $tag->getTagName();?></option>
                 <?php endforeach; } ?>
